@@ -6,6 +6,10 @@ package view;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import control.HomeController;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.table.DefaultTableModel;
+import model.Book;
 
 /**
  *
@@ -18,11 +22,31 @@ public class Home extends javax.swing.JFrame {
     /**
      * Creates new form App
      */
-    public Home() {
-        this.controller = new HomeController();
+    public Home(HomeController controller) {
+        this.controller = controller;
         initComponents();
     }
 
+   public void loadData() {
+
+        DefaultTableModel model = (DefaultTableModel) this.tableBooks.getModel();
+        model.setNumRows(0);
+
+        HashMap<Book, Integer> inventory = new HashMap<>();
+        inventory = controller.getInventoryMap();
+
+        for (Map.Entry<Book, Integer> entry : inventory.entrySet()) {
+            model.addRow(new Object[]{
+                entry.getKey().getTitle(),
+                entry.getKey().getAuthor().getName(),
+                entry.getKey().getYear()
+            });
+        }
+    }
+    
+    private void refreshTable(){
+        tableBooks.repaint();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +58,7 @@ public class Home extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableBooks = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         fieldAuthor = new javax.swing.JTextField();
@@ -49,23 +73,37 @@ public class Home extends javax.swing.JFrame {
 
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableBooks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title", "Author", "Year"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableBooks.setColumnSelectionAllowed(true);
+        tableBooks.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tableBooks);
+        tableBooks.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jPanel1.add(jScrollPane1);
 
         jPanel3.setMaximumSize(new java.awt.Dimension(2147483647, 220));
-        jPanel3.setMinimumSize(null);
         jPanel3.setPreferredSize(new java.awt.Dimension(697, 220));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
@@ -113,13 +151,17 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAddBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddBookActionPerformed
-        controller.addBookToInv(fieldName.getText(), fieldAuthor.getText(), fieldYear.getText());
+        String name = fieldName.getText();
+        String author = fieldAuthor.getText();
+        String year = fieldYear.getText();
+        controller.addBookToInv(name , author, year);
+        loadData();
     }//GEN-LAST:event_buttonAddBookActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void launch() {
+    public static void launch(String[] args, HomeController controller) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -140,8 +182,9 @@ public class Home extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new Home().setVisible(true);
+                new Home(controller).setVisible(true);
             }
         });
     }
@@ -158,6 +201,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableBooks;
     // End of variables declaration//GEN-END:variables
 }

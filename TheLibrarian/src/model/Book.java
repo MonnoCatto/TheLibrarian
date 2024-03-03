@@ -3,7 +3,7 @@ public class Book {
     
     private static int staticID = 0;
     public final int id;
-    private String name;
+    private String title;
     private Author author;
     private int year;
 
@@ -11,7 +11,7 @@ public class Book {
         id = staticID;
         staticID += 1;
         
-        this.name = name;
+        this.title = name;
         this.author = author;
         this.year = year;
     }
@@ -22,11 +22,11 @@ public class Book {
     //public void setID(int id){
     //    this.id = id;
     //}
-    public String getName(){
-       return this.name;
+    public String getTitle(){
+       return this.title;
     }
-    public void setName(String name){
-        this.name = name;
+    public void setTitle(String title){
+        this.title = title;
     }
     public Author getAuthor(){
         return this.author;

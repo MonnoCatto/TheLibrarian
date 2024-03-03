@@ -1,14 +1,21 @@
 package control;
 
-import model.Inventory;
+import java.util.HashMap;
 import model.Book;
-import model.Author;
 
 public class HomeController {
+    
+    private InventoryController inventoryController;
 
     public void addBookToInv(String name, String author, String year){
-        
-        App.inventory.addEntry(new Book(name, new Author(author), Integer.parseInt(year)), 1);
-        System.out.println(App.inventory.toString());
+        BookController.getInstance().addBook(name, author, year);
+    }
+    
+    public HashMap<Book, Integer> getInventoryMap(){
+        return inventoryController.getInventoryInstance().getMap();
+    }
+    
+    public void setInventoryController(InventoryController i){
+        this.inventoryController = i;
     }
 }

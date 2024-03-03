@@ -1,55 +1,48 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import DAO.InventoryDAO;
 
 public class Inventory {
     
-    private ArrayList<InvEntry> inv = new ArrayList<InvEntry>();
-
+    final HashMap<Book, Integer> inv;
+    final InventoryDAO dao;
+    
     public Inventory(){
+        inv = new HashMap<>();
+        dao = new InventoryDAO();
     }
-
-    public void addEntry(Book book, int stock){
-        inv.add(new InvEntry(book, stock));
+    
+    private void sync(){
+        inv.clear();
+        inv.putAll(dao.getMap());
     }
-    public void delEntry(int i){
-        inv.remove(i);
+    
+    public void addBook(Book book) throws Exception{
+        dao.addBook(book);
+        sync();
     }
-    public String getInventory(){
-        return this.inv.toString();
+    
+    public void deleteBook(Book book) throws Exception{
+        dao.deleteBook(book);
+        sync();
     }
-    public ArrayList<InvEntry> getInventoryArrayList(){
-        return this.inv;
+    
+    public void addStock(Book book, int value) throws Exception{
+        dao.addStock(book, value);
+        sync();
     }
-    public void addStock(Book book, int val){
-
-        boolean flag = false;
-        for (int i = 0; i < inv.size() && !flag; i++){
-
-            if (book == inv.get(i).getBook()){
-                inv.get(i).addStock(val);
-                flag = true;
-            }
-        }
+    
+    public void rmvStock(Book book, int value) throws Exception{
+        dao.rmvStock(book, value);
     }
-    public void removeStock(Book book, int val){
-
-        boolean flag = false;
-        for (int i = 0; i < inv.size() && !flag; i++){
-
-            if (book == inv.get(i).getBook()){
-                inv.get(i).removeStock(val);
-                flag = true;
-            }
-        }
+    
+    public int getStock(Book book) throws Exception{
+        return dao.getStock(book);
     }
-    @Override
-    public String toString(){
-        String out = "";
-        for (int i = 0; i < inv.size(); i++){
-            out += inv.get(i).getBook().getName() +", "+
-                    inv.get(i).getStock();
-        }
-        return out;
+    
+    public HashMap getMap(){
+        sync();
+        return inv;
     }
 }

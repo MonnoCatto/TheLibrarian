@@ -1,4 +1,4 @@
-package model;
+/*package model;
 
 public class InvEntry {
     
@@ -29,4 +29,4 @@ public class InvEntry {
         this.book = book;
     }
 
-}
+}*/
