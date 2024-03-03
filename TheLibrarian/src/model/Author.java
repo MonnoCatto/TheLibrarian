@@ -4,24 +4,24 @@ import java.util.ArrayList;
 
 public class Author {
     
-    private int id;
+    private static int staticID = 0;
+    public final int id;
     private String name;
-    private ArrayList<Book> bksWritten = new ArrayList<Book>();
+    final ArrayList<Book> bksWritten;
 
-    public Author(){
-    }
-
-    Author (int id, String name){
-        this.id = id;
+    public Author (String name){
+        id = staticID;
+        staticID += 1;
+        this.bksWritten = new ArrayList<>();
         this.name = name;
     }
 
     public int getID(){
         return this.id;
     }
-    public void setID(int id){
-        this.id = id;
-    }
+    //public void setID(int id){
+    //    this.id = id;
+    //}
     public String getName(){
         return this.name;
     }

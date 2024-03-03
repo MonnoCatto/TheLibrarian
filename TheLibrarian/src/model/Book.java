@@ -1,16 +1,16 @@
 package model;
 public class Book { 
     
-    private int id;
+    private static int staticID = 0;
+    public final int id;
     private String name;
     private Author author;
     private int year;
 
-    public Book(){
-    }
-
-    public Book(int id, String name, Author author, int year){
-        this.id = id;
+    public Book(String name, Author author, int year){
+        id = staticID;
+        staticID += 1;
+        
         this.name = name;
         this.author = author;
         this.year = year;
@@ -19,11 +19,11 @@ public class Book {
     public int getID(){
         return this.id;
     }
-    public void setID(int id){
-        this.id = id;
-    }
+    //public void setID(int id){
+    //    this.id = id;
+    //}
     public String getName(){
-        return this.name;
+       return this.name;
     }
     public void setName(String name){
         this.name = name;
