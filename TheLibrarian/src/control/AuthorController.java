@@ -12,4 +12,8 @@ public class AuthorController {
     //  Adds author to the database, if there isn't already an identical entry
     public void addAuthor(String name){
     }
+
+    public void setAuthorDAO(AuthorDAO dao){
+        this.dao = dao;
+    }
 }
