@@ -1,32 +1,21 @@
 package control;
 
 import model.Inventory;
+import DAO.InventoryDAO;
 
 public class InventoryController {
 
-    private final Inventory inventory;
+    private Inventory inventory;
+    private InventoryDAO dao;
     
-    public InventoryController(Inventory inventory){
+    public void setInventory(Inventory inventory){
         this.inventory = inventory;
     }
-    
+    public void setInventoryDAO(InventoryDAO dao){
+        this.dao = dao;
+    }
+
     public Inventory getInventoryInstance(){
         return inventory;
     }
-    
-    /*
-    public void setInventory(Inventory inv){
-        inventory = inv;
-    }
-    
-    //  Setup for singleton class
-    private static class CtrlHelper {
-        private static final InventoryController INSTANCE = new InventoryController();
-    }
-    public static InventoryController getInstance(){
-        return CtrlHelper.INSTANCE;
-    }
-    private InventoryController(){
-    }
-    */
 }

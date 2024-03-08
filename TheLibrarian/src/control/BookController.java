@@ -1,35 +1,52 @@
 package control;
 
 
+
+
+import control.*;
+import exc.*;
+import DAO.BookDAO;
 import model.Author;
 import model.Book;
 
 public class BookController {
     
     private InventoryController inventoryController;
+    private BookDAO dao;
     
-    //  Creates new book instance and sends it to the inventory
-    public void addBook(String name, String author, String year){
-        
-        Book book = new Book(name, new Author(author), Integer.parseInt(year));
-        try{
-            inventoryController.getInventoryInstance().addBook(book);
-        } catch (Exception e){
-            System.out.println(e.toString());
+    //  Adds book to the database, if there isn't already an identical entry
+    public void addBook(String name, Author author, int year) throws DuplicateEntryException{
+        if (this.isAlreadyRegistered(name, author, year)){
+            throw new DuplicateEntryException();
+        }
+        else {
+            dao.create(new Book(name, author, year));
         }
     }
     
-    public void setInventoryController(InventoryController i){
-        this.inventoryController = i;
+    //  Removes book entry from the database
+    public void delBook(Book book){
+        dao.delete(book);
     }
     
-    //  Setup for singleton class
-    private class CtrlHelper {
-        private static final BookController INSTANCE = new BookController();
+    //  Checks database for specified parameters, returns false if no occurrence was found
+    public boolean isAlreadyRegistered(String name, Author author, int year){
+        boolean flag = false;
+        for (Book entry : dao.readAll()){
+            if (entry.equals(name, author, year)){
+                flag = true;
+                break;
+            }
+        }
+        return flag;
     }
-    public static BookController getInstance(){
-        return CtrlHelper.INSTANCE;
+    
+    //<editor-fold defaultstate="collapsed" desc="Methods for dependency injection">
+    public void setInventoryController(InventoryController inv){
+        this.inventoryController = inv;
     }
-    private BookController(){
+    public void setBookDAO(BookDAO dao){
+        this.dao = dao;
     }
+    //</editor-fold>
 }

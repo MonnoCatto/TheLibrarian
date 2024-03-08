@@ -8,13 +8,21 @@ public class App {
 
     public static void main (String[] args){
         
-        var inventory = new Inventory();
-        var inventoryController = new InventoryController(inventory);
+        InventoryController inventoryController = new InventoryController();
+        HomeController homeViewController = new HomeController();
+        BookController bookController = new BookController();
+    
+        Inventory inventory = new Inventory();
+    
+        AuthorDAO authorDAO = new AuthorDAO();
+        BookDAO bookDAO = new BookDAO();
+        InventoryDAO inventoryDAO = new InventoryDAO();
         
-        var homeViewController = new HomeController();
-        homeViewController.setInventoryController(inventoryController);
+        /*
         
-        BookController.getInstance().setInventoryController(inventoryController);
+        ADD INJECTION CODE HERE
+        
+        */
         
         Home.launch(args, homeViewController);
     }

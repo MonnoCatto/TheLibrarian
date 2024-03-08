@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Author {
     
     private static int staticID = 0;
@@ -27,7 +25,7 @@ public class Author {
     public String getBirth(){
         return this.birth;
     }
-    public void setBirht(String birth){
+    public void setBirth(String birth){
         this.birth = birth;
     }
 }

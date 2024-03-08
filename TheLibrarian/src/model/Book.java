@@ -16,12 +16,11 @@ public class Book {
         this.year = year;
     }
 
+    //<editor-fold defaultstate="collapsed" desc="Get/Set Code">
+    //  Getters / setters
     public int getID(){
         return this.id;
     }
-    //public void setID(int id){
-    //    this.id = id;
-    //}
     public String getTitle(){
        return this.title;
     }
@@ -39,5 +38,29 @@ public class Book {
     }
     public void setYear(int year){
         this.year = year;
+    }
+    //</editor-fold>
+    
+    /**
+     * Compares current book with another instance of the same class
+     * @return <code>true</code> if both share the same <code>title</code>, 
+     * <code>author</code> and <code>year</code>
+     */
+    public boolean equals(Book otherBook){
+        return (this.title.equals(otherBook.getTitle()) 
+                && this.author.equals(otherBook.getAuthor())
+                && this.year == otherBook.getYear()
+                );
+    }
+    
+    /**
+     * Compares the current instance's properties with passed parameters
+     * @return <code>true</code> if both share the same <code>title</code>, 
+     * <code>author</code> and <code>year</code>
+     */
+    public boolean equals(String title, Author author, int year){
+        return (this.title.equals(title)
+                && this.author.equals(author)
+                && this.year == year);
     }
 }
