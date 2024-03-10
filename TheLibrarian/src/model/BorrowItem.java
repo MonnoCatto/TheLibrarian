@@ -1,5 +1,11 @@
 package model;
 
+/*
+ * 
+ *  OUTDATED CLASS AS OF CURRENT DATA STRUCTURE
+ * 
+ */
+/*
 public class BorrowItem {
 
     public final Book book;
@@ -14,4 +20,4 @@ public class BorrowItem {
         this.rtrnDate = rtrnDate;
         this.ammount = ammount;
     }
-}
+}*/

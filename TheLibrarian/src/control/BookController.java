@@ -1,9 +1,5 @@
 package control;
 
-
-
-
-import control.*;
 import exc.*;
 import DAO.BookDAO;
 import model.Author;
@@ -11,16 +7,19 @@ import model.Book;
 
 public class BookController {
     
-    private InventoryController inventoryController;
     private BookDAO dao;
     
     public void addBook(String title, Author author, int year) throws DuplicateEntryException{
         Book book = new Book(title, author, year);
         
-        if (this.isAlreadyRegistered(book))
+        if (isAlreadyRegistered(book)){
+            //  Unlink the created object reference so garbage collector picks it up faster
+            book = null;
             throw new DuplicateEntryException();
-        else
+        }
+        else {
             dao.create(book);
+        }
     }
     
     //  Removes book entry from the database

@@ -9,6 +9,7 @@ public class Book {
     private String title;
     private Author author;
     private int year;
+    private Stock stock;
 
     public Book(String title, Author author, int year){
         generateID();
@@ -25,7 +26,6 @@ public class Book {
     }
 
     //<editor-fold defaultstate="collapsed" desc="Get/Set Code">
-    //  Getters / setters
     public int getID(){
         return this.id;
     }
@@ -46,6 +46,12 @@ public class Book {
     }
     public void setYear(int year){
         this.year = year;
+    }
+    public Stock getStock(){
+        return stock;
+    }
+    public void setStock(Stock stock){
+        this.stock = stock;
     }
     //</editor-fold>
     

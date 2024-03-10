@@ -1,5 +1,11 @@
 package model;
 
+/*
+ * 
+ *  OUTDATED CLASS AS OF CURRENT DATA STRUCTURE
+ * 
+ */
+/*
 import java.util.ArrayList;
 
 public class BorrowList {
@@ -29,4 +35,4 @@ public class BorrowList {
             flag = true;
         }
     }
-}
+}*/

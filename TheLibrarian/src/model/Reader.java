@@ -1,11 +1,16 @@
 package model;
+
+/*
+ *  UNIMPLEMENTED CLASS
+ */
+
 public class Reader {
 
     private int id;
     private String name;
     private String cpf;
     private String phone;
-    private BorrowList borrowList;
+    //private BorrowList borrowList;
 
     public Reader(){
     }
@@ -15,7 +20,7 @@ public class Reader {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
-        this.borrowList = new BorrowList();
+        //this.borrowList = new BorrowList();
     }
 
     public int getID(){
@@ -41,11 +46,11 @@ public class Reader {
     }
     public void setPhone(String phone){
         this.phone = phone;
-    }
+    }/*
     public BorrowList getBorrowList(){
         return this.borrowList;
     }
     public void setBorrowList(BorrowList list){
         this.borrowList = list;
-    }
+    }*/
 }
