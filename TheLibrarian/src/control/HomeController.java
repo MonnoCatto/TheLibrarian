@@ -28,4 +28,7 @@ public class HomeController {
     public void setInventoryController(InventoryController i){
         this.inventoryController = i;
     }
+    public void setBookController(BookController b){
+        this.bookController = b;
+    }
 }

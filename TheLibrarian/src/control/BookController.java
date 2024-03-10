@@ -14,14 +14,13 @@ public class BookController {
     private InventoryController inventoryController;
     private BookDAO dao;
     
-    //  Adds book to the database, if there isn't already an identical entry
-    public void addBook(String name, Author author, int year) throws DuplicateEntryException{
-        if (this.isAlreadyRegistered(name, author, year)){
+    public void addBook(String title, Author author, int year) throws DuplicateEntryException{
+        Book book = new Book(title, author, year);
+        
+        if (this.isAlreadyRegistered(book))
             throw new DuplicateEntryException();
-        }
-        else {
-            dao.create(new Book(name, author, year));
-        }
+        else
+            dao.create(book);
     }
     
     //  Removes book entry from the database
@@ -30,10 +29,10 @@ public class BookController {
     }
     
     //  Checks database for specified parameters, returns false if no occurrence was found
-    public boolean isAlreadyRegistered(String name, Author author, int year){
+    public boolean isAlreadyRegistered(Book book){
         boolean flag = false;
-        for (Book entry : dao.readAll()){
-            if (entry.equals(name, author, year)){
+        for (Book entry : dao.read()){
+            if (entry.equals(book)){
                 flag = true;
                 break;
             }

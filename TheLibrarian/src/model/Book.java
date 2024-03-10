@@ -1,18 +1,26 @@
 package model;
+
+import java.util.Objects;
+
 public class Book { 
     
     private static int staticID = 0;
-    public final int id;
+    private int id;
     private String title;
     private Author author;
     private int year;
 
-    public Book(String name, Author author, int year){
-        id = staticID;
-        staticID += 1;
-        
-        this.title = name;
+    public Book(String title, Author author, int year){
+        generateID();
+        this.title = title;
         this.author = author;
+        this.year = year;
+    }
+    //  Adds the option to generate a book with no author,
+    //  in case the user wants to assign the author later.
+    public Book (String title, int year){
+        generateID();
+        this.title = title;
         this.year = year;
     }
 
@@ -41,26 +49,30 @@ public class Book {
     }
     //</editor-fold>
     
-    /**
-     * Compares current book with another instance of the same class
-     * @return <code>true</code> if both share the same <code>title</code>, 
-     * <code>author</code> and <code>year</code>
-     */
-    public boolean equals(Book otherBook){
-        return (this.title.equals(otherBook.getTitle()) 
-                && this.author.equals(otherBook.getAuthor())
-                && this.year == otherBook.getYear()
+    @Override
+    public boolean equals(Object other){
+        if (this == other) return true;
+        if (other == null) return false;
+        if (getClass() != other.getClass()) return false;
+        
+        Book otherBook = (Book) other;
+        boolean authorIsNull = (otherBook.getAuthor() == null);
+        
+        if (authorIsNull){
+            return(
+                    Objects.equals(this.title, otherBook.getTitle())
+                    && Objects.equals(this.year, otherBook.getYear())
+                    );
+        }
+        return(
+                Objects.equals(this.title, otherBook.getTitle())
+                && Objects.equals(this.author, otherBook.getAuthor())
+                && Objects.equals(this.year, otherBook.getYear())
                 );
     }
     
-    /**
-     * Compares the current instance's properties with passed parameters
-     * @return <code>true</code> if both share the same <code>title</code>, 
-     * <code>author</code> and <code>year</code>
-     */
-    public boolean equals(String title, Author author, int year){
-        return (this.title.equals(title)
-                && this.author.equals(author)
-                && this.year == year);
+    private void generateID(){
+        id = staticID;
+        staticID += 1;
     }
 }

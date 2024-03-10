@@ -17,13 +17,13 @@ import model.Book;
  */
 public class Home extends javax.swing.JFrame {
     
-    final HomeController controller;
+    private HomeController controller;
 
     /**
      * Creates new form App
      */
-    public Home(HomeController controller) {
-        this.controller = controller;
+    public Home(HomeController c) {
+        this.controller = c;
         initComponents();
     }
 

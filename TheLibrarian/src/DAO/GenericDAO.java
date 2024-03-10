@@ -1,11 +1,11 @@
 package DAO;
 
-import model.DataPackage;
+import java.util.ArrayList;
 
-public interface GenericDAO {
+public interface GenericDAO<T> {
 
-    public void create();
-    public DataPackage read();
+    public void create(T obj);
+    public ArrayList<T> read();
     public void update();
-    public void delete();
+    public void delete(T obj);
 }

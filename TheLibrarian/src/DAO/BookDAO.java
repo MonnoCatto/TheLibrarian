@@ -3,7 +3,7 @@ package DAO;
 import model.Book;
 import java.util.ArrayList;
 
-public class BookDAO {
+public class BookDAO implements GenericDAO<Book>{
     
     //  Placeholder for future SQL database
     private static final ArrayList<Book> database = new ArrayList<>();
@@ -12,16 +12,13 @@ public class BookDAO {
     public void create(Book book){
         database.add(book);
     }
-    public void read(){
+    public ArrayList<Book> read(){
+        return (ArrayList<Book>) database.clone();
     }
     public void update(){
+        System.out.println("BookDAO.update() method not supported yet.");
     }
     public void delete(Book book){
         database.remove(book);
-    }
-    
-    //  Returns the reference to the static ArraList (placeholder for DB)
-    public ArrayList<Book> readAll(){
-        return database;
     }
 }
