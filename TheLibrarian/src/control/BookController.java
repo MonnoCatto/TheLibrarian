@@ -40,9 +40,9 @@ public class BookController {
     }
     
     //<editor-fold defaultstate="collapsed" desc="Methods for dependency injection">
-    public void setInventoryController(InventoryController inv){
-        this.inventoryController = inv;
-    }
+    //public void setInventoryController(InventoryController inv){
+    //    this.inventoryController = inv;
+    //}
     public void setBookDAO(BookDAO dao){
         this.dao = dao;
     }
