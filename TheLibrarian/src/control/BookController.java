@@ -4,47 +4,36 @@ import exc.*;
 import DAO.BookDAO;
 import model.Author;
 import model.Book;
+import model.Stock;
 
 public class BookController {
-    
+
     private BookDAO dao;
-    
-    public void addBook(String title, Author author, int year) throws DuplicateEntryException{
+    private StockController stockController;
+
+    public void addBook(String title, Author author, int year) throws DuplicateEntryException {
         Book book = new Book(title, author, year);
-        
-        if (isAlreadyRegistered(book)){
-            //  Unlink the created object reference so garbage collector picks it up faster
-            book = null;
+
+        if (!isAlreadyRegistered(book)) {
+            Stock newStock = stockController.createStock(book);
+            book.setStock(newStock);
+            dao.create(book);
+        } else {
+            book = null;    //  make test object elligible for garbage collection
             throw new DuplicateEntryException();
         }
-        else {
-            dao.create(book);
-        }
     }
-    
+
     //  Removes book entry from the database
-    public void delBook(Book book){
+    public void deleteBook(Book book) {
         dao.delete(book);
     }
-    
-    //  Checks database for specified parameters, returns false if no occurrence was found
-    public boolean isAlreadyRegistered(Book book){
-        boolean flag = false;
-        for (Book entry : dao.read()){
-            if (entry.equals(book)){
-                flag = true;
-                break;
-            }
-        }
-        return flag;
+
+    public boolean isAlreadyRegistered(Book book) {
+        return dao.contains(book);
     }
-    
-    //<editor-fold defaultstate="collapsed" desc="Methods for dependency injection">
-    //public void setInventoryController(InventoryController inv){
-    //    this.inventoryController = inv;
-    //}
-    public void setBookDAO(BookDAO dao){
+
+    public void setBookDAO(BookDAO dao) {
         this.dao = dao;
     }
-    //</editor-fold>
 }

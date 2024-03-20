@@ -35,19 +35,12 @@ public class Author extends ObjectWithID {
     //  </editor-fold>
 
     @Override
-    public boolean equals(Object othr) {
-        if (super.equals(othr)) {
+    public boolean equals(Object o) {
+        if (super.equals(o)) {
             return true;
         }
-        Author other = (Author) othr;
-        boolean birthIsNull = (other.getBirth() == null);
-
-        if (birthIsNull) { 
-            System.out.println("No birth date is set, comparing only the name of the author.");
-            return Objects.equals(this.name, other.getName());
-        }
+        Author other = (Author) o;
         
-        return (Objects.equals(this.name, other.getName())
-                && Objects.equals(this.birth, other.getBirth()));
+        return Objects.equals(name, other.getName());
     }
 }

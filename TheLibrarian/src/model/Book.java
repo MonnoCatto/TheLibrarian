@@ -15,13 +15,6 @@ public class Book extends ObjectWithID {
         this.year = year;
     }
 
-    //  Adds the option to generate a book with no author,
-    //  in case the user wants to assign the author later.
-    public Book(String title, int year) {
-        this.title = title;
-        this.year = year;
-    }
-
     //<editor-fold defaultstate="collapsed" desc="get/set code">
     public String getTitle() {
         return title;
@@ -57,21 +50,15 @@ public class Book extends ObjectWithID {
     //</editor-fold>
 
     @Override
-    public boolean equals(Object othr) {
-        if (super.equals(othr)) {
+    public boolean equals(Object o) {
+        if (super.equals(o)) {
             return true;
         }
 
-        Book other = (Book) othr;
-        boolean authorIsNull = (other.getAuthor() == null);
-
-        if (authorIsNull) {
-            System.out.println("No author is set, comparing only the title and year of the books.");
-            return (Objects.equals(this.title, other.getTitle())
-                    && Objects.equals(this.year, other.getYear()));
-        }
-        return (Objects.equals(this.title, other.getTitle())
-                && Objects.equals(this.author, other.getAuthor())
-                && Objects.equals(this.year, other.getYear()));
+        Book other = (Book) o;
+        
+        return (Objects.equals(title, other.getTitle())
+                && Objects.equals(author, other.getAuthor())
+                && Objects.equals(year, other.getYear()));
     }
 }

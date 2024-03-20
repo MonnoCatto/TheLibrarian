@@ -2,10 +2,33 @@ package DAO;
 
 import java.util.ArrayList;
 
-public interface GenericDAO<T> {
+public abstract class GenericDAO<T> {
 
-    public void create(T obj);
-    public ArrayList<T> read();
-    public void update();
-    public void delete(T obj);
+    private final ArrayList<T> database = new ArrayList<>();
+
+    public boolean create(T obj) {
+        return database.add(obj);
+    }
+
+    public ArrayList<T> read() {
+        return (ArrayList<T>) database.clone();
+    }
+
+    public boolean update() {
+        System.out.println("UPDATE from CRUD not implemented yet.");
+        return false;
+    }
+
+    public boolean delete(T obj) {
+        return database.remove(obj);
+    }
+
+    public boolean contains(T obj) {
+        for (T entry : database) {
+            if (entry.equals(obj)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

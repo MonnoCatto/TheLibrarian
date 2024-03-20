@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Reader extends ObjectWithID {
 
     private String name;
@@ -39,11 +41,12 @@ public class Reader extends ObjectWithID {
     //  </editor-fold>
     
     @Override
-    public boolean equals(Object other){
-        System.out.println("equals() method not yet finished for class Reader");
-        if (super.equals(other)) {
+    public boolean equals(Object o){
+        if (super.equals(o)) {
             return true;
         }
-        return false;
+        Reader other = (Reader) o;
+        
+        return Objects.equals(this.cpf, other.getCPF());
     }
 }

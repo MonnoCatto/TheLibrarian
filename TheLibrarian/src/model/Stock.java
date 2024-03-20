@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Stock extends ObjectWithID {
 
     private final Book book;
@@ -8,11 +10,6 @@ public class Stock extends ObjectWithID {
     public Stock(Book book) {
         this.book = book;
         quantity = 0;
-    }
-
-    public Stock(Book book, int quantity) {
-        this.book = book;
-        this.quantity = quantity;
     }
 
     public void add(int q) {
@@ -38,11 +35,11 @@ public class Stock extends ObjectWithID {
     //  </editor-fold>
 
     @Override
-    public boolean equals(Object othr) {
-        if (super.equals(othr)) {
+    public boolean equals(Object o) {
+        if (super.equals(o)) {
             return true;
         }
-        Stock other = (Stock) othr;
-        return this.book.equals(other.getBook());
+        Stock other = (Stock) o;
+        return Objects.equals(book, other.getBook());
     }
 }
