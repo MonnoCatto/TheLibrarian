@@ -8,7 +8,7 @@ public class MainView extends javax.swing.JFrame {
      * Creates new form App
      */
     public MainView() {
-        setLAF(new FlatDarkLaf());
+        setLAF();
         initComponents();
     }
 
@@ -37,9 +37,9 @@ public class MainView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void setLAF(FlatLaf laf) {
+    private void setLAF() {
         try {
-            javax.swing.UIManager.setLookAndFeel(laf);
+            javax.swing.UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
