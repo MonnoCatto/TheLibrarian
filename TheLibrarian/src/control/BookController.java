@@ -8,10 +8,18 @@ import model.Stock;
 
 public class BookController {
 
-    private BookDAO dao;
+    private final BookDAO dao;
     private StockController stockController;
+    
+    public BookController(BookDAO dao){
+        this.dao = dao;
+    }
+    
+    public void setStockController(StockController s){
+        stockController = s;
+    }
 
-    public void addBook(String title, Author author, int year) throws DuplicateEntryException {
+    public void createBook(String title, Author author, int year) throws DuplicateEntryException {
         Book book = new Book(title, author, year);
 
         if (!isAlreadyRegistered(book)) {
@@ -31,9 +39,5 @@ public class BookController {
 
     public boolean isAlreadyRegistered(Book book) {
         return dao.contains(book);
-    }
-
-    public void setBookDAO(BookDAO dao) {
-        this.dao = dao;
     }
 }

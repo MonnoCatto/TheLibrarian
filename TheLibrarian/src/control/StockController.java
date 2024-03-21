@@ -6,7 +6,11 @@ import DAO.StockDAO;
 
 public class StockController {
     
-    private StockDAO dao;
+    private final StockDAO dao;
+    
+    public StockController(StockDAO dao){
+        this.dao = dao;
+    }
     
     public Stock createStock(Book book){
         Stock stock = new Stock(book);

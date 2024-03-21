@@ -5,12 +5,16 @@ import DAO.AuthorDAO;
 
 public class AuthorController {
 
-    private AuthorDAO dao;
-    
-    public void addAuthor(String name){
+    private final AuthorDAO dao;
+
+    public AuthorController(AuthorDAO dao) {
+        this.dao = dao;
     }
 
-    public void setAuthorDAO(AuthorDAO dao){
-        this.dao = dao;
+    public void createAuthor(String name) {
+    }
+    
+    public void deleteAuthor(){
+        
     }
 }
