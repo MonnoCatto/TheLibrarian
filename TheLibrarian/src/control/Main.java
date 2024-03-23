@@ -1,6 +1,8 @@
 package control;
 
 import view.MainView;
+import view.LAFManager;
+import view.LAFInterface;
 import DAO.*;
 
 public class Main {
@@ -21,11 +23,16 @@ public class Main {
         
         cBook.setStockController(cStock);
         
+        LAFInterface lafManager = new LAFManager();
+        lafManager.startLAF();
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MainView().setVisible(true);
+                var frame = new MainView(lafManager);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
             }
         });
     }
