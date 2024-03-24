@@ -13,13 +13,27 @@ public class MainView extends javax.swing.JFrame {
     public MainView(LAFInterface lafManager) {
         this.lafManager = lafManager;
         initComponents();
-        themeLabel.setText(lafManager.getLAF().getName());
+        updateMenuText();
     }
     
     private void updateUI(){
         for(Window window : getWindows()) {
             SwingUtilities.updateComponentTreeUI(window);
         }
+    }
+    
+    private void updateMenuText(){
+        
+        jMenuItemThemeChanger.setText("Current Theme: " + lafManager.getLAF().getName());
+        
+        String mode = lafManager.getCurrentType();
+        String togglerMenuText;
+        togglerMenuText = switch (mode) {
+            case "LIGHT" -> "Light Mode";
+            case "DARK" -> "Dark Mode";
+            default -> "Untracked UI Theme";
+        };
+        jMenuItemModeToggler.setText(togglerMenuText);
     }
 
     /**
@@ -31,180 +45,162 @@ public class MainView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jSlider1 = new javax.swing.JSlider();
-        jSlider2 = new javax.swing.JSlider();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        themeLabel = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jEditMenu = new javax.swing.JMenu();
+        topPanel = new javax.swing.JPanel();
+        jToolBar1 = new javax.swing.JToolBar();
+        jButtonNewLoan = new javax.swing.JButton();
+        jButtonNewReader = new javax.swing.JButton();
+        jButtonNewBook = new javax.swing.JButton();
+        jToolBar4 = new javax.swing.JToolBar();
+        jButtonNewLoan1 = new javax.swing.JButton();
+        contentPanel = new javax.swing.JPanel();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuEdit = new javax.swing.JMenu();
+        jMenuThemes = new javax.swing.JMenu();
+        jMenuItemThemeChanger = new javax.swing.JMenuItem();
+        jMenuItemModeToggler = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
 
-        jCheckBox1.setText("jCheckBox1");
+        topPanel.setLayout(new javax.swing.BoxLayout(topPanel, javax.swing.BoxLayout.LINE_AXIS));
 
-        jCheckBox2.setText("jCheckBox1");
+        jToolBar1.setFloatable(true);
+        jToolBar1.setRollover(true);
 
-        jCheckBox3.setText("jCheckBox1");
-
-        jCheckBox4.setText("jCheckBox1");
-
-        jRadioButton1.setText("jRadioButton1");
-
-        jRadioButton2.setText("jRadioButton1");
-
-        jSlider1.setOrientation(javax.swing.JSlider.VERTICAL);
-
-        jSlider2.setOrientation(javax.swing.JSlider.VERTICAL);
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
-        jButton1.setFont(new java.awt.Font("Quicksand Light", 1, 48)); // NOI18N
-        jButton1.setText("Theme");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNewLoan.setText("New Loan");
+        jButtonNewLoan.setFocusable(false);
+        jButtonNewLoan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonNewLoan.setMaximumSize(new java.awt.Dimension(110, 55));
+        jButtonNewLoan.setMinimumSize(new java.awt.Dimension(55, 55));
+        jButtonNewLoan.setName(""); // NOI18N
+        jButtonNewLoan.setPreferredSize(new java.awt.Dimension(55, 55));
+        jButtonNewLoan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonNewLoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonNewLoanActionPerformed(evt);
             }
         });
+        jToolBar1.add(jButtonNewLoan);
+        jButtonNewLoan.getAccessibleContext().setAccessibleDescription("");
 
-        themeLabel.setFont(new java.awt.Font("Quicksand Light", 2, 18)); // NOI18N
-        themeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        themeLabel.setText("Example");
+        jButtonNewReader.setText("New Reader");
+        jButtonNewReader.setFocusable(false);
+        jButtonNewReader.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonNewReader.setMaximumSize(new java.awt.Dimension(110, 55));
+        jButtonNewReader.setMinimumSize(new java.awt.Dimension(55, 55));
+        jButtonNewReader.setName(""); // NOI18N
+        jButtonNewReader.setPreferredSize(new java.awt.Dimension(55, 55));
+        jButtonNewReader.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButtonNewReader);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox4)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(345, 345, 345)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(267, 267, 267)
-                                .addComponent(themeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(278, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jCheckBox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox4)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(themeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton1))
-                .addContainerGap())
-        );
+        jButtonNewBook.setText("New Book");
+        jButtonNewBook.setFocusable(false);
+        jButtonNewBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonNewBook.setMaximumSize(new java.awt.Dimension(110, 55));
+        jButtonNewBook.setMinimumSize(new java.awt.Dimension(55, 55));
+        jButtonNewBook.setName(""); // NOI18N
+        jButtonNewBook.setPreferredSize(new java.awt.Dimension(55, 55));
+        jButtonNewBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButtonNewBook);
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        topPanel.add(jToolBar1);
 
-        jEditMenu.setText("Edit");
-        jMenuBar1.add(jEditMenu);
+        jToolBar4.setFloatable(true);
+        jToolBar4.setRollover(true);
 
-        setJMenuBar(jMenuBar1);
+        jButtonNewLoan1.setText("AAAAA");
+        jButtonNewLoan1.setFocusable(false);
+        jButtonNewLoan1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonNewLoan1.setMaximumSize(new java.awt.Dimension(110, 55));
+        jButtonNewLoan1.setMinimumSize(new java.awt.Dimension(55, 55));
+        jButtonNewLoan1.setName(""); // NOI18N
+        jButtonNewLoan1.setPreferredSize(new java.awt.Dimension(55, 55));
+        jButtonNewLoan1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonNewLoan1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNewLoan1ActionPerformed(evt);
+            }
+        });
+        jToolBar4.add(jButtonNewLoan1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        topPanel.add(jToolBar4);
+
+        getContentPane().add(topPanel, java.awt.BorderLayout.PAGE_START);
+        getContentPane().add(contentPanel, java.awt.BorderLayout.CENTER);
+
+        jMenu2.setText("File");
+        jMenuBar2.add(jMenu2);
+
+        jMenuEdit.setText("Edit");
+
+        jMenuThemes.setText("Themes");
+
+        jMenuItemThemeChanger.setText("Current Theme: FlatLaf Example");
+        jMenuItemThemeChanger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemThemeChangerActionPerformed(evt);
+            }
+        });
+        jMenuThemes.add(jMenuItemThemeChanger);
+
+        jMenuItemModeToggler.setText("Example Mode");
+        jMenuItemModeToggler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toggleMode(evt);
+            }
+        });
+        jMenuThemes.add(jMenuItemModeToggler);
+
+        jMenuEdit.add(jMenuThemes);
+
+        jMenuBar2.add(jMenuEdit);
+
+        setJMenuBar(jMenuBar2);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonNewLoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewLoanActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonNewLoanActionPerformed
+
+    private void jButtonNewLoan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewLoan1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonNewLoan1ActionPerformed
+
+    private void jMenuItemThemeChangerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemThemeChangerActionPerformed
         lafManager.cycleLAF();
-        themeLabel.setText(lafManager.getLAF().getName());
+        updateMenuText();
         updateUI();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        jMenuEdit.doClick();
+        jMenuThemes.doClick();
+    }//GEN-LAST:event_jMenuItemThemeChangerActionPerformed
 
-    //public static void main(String[] args) {
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        //</editor-fold>
-
-        /* Create and display the form *//*
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new MainView().setVisible(true);
-            }
-        });
-    }*/
+    private void toggleMode(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleMode
+        // TODO add your handling code here:
+        lafManager.cycleType();
+        lafManager.cycleLAF();
+        updateUI();
+        updateMenuText();
+        jMenuEdit.doClick();
+        jMenuThemes.doClick();
+    }//GEN-LAST:event_toggleMode
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JMenu jEditMenu;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JSlider jSlider2;
-    private javax.swing.JLabel themeLabel;
+    private javax.swing.JPanel contentPanel;
+    private javax.swing.JButton jButtonNewBook;
+    private javax.swing.JButton jButtonNewLoan;
+    private javax.swing.JButton jButtonNewLoan1;
+    private javax.swing.JButton jButtonNewReader;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenu jMenuEdit;
+    private javax.swing.JMenuItem jMenuItemModeToggler;
+    private javax.swing.JMenuItem jMenuItemThemeChanger;
+    private javax.swing.JMenu jMenuThemes;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JToolBar jToolBar4;
+    private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
 }
