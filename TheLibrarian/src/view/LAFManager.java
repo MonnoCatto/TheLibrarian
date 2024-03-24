@@ -4,43 +4,59 @@ import javax.swing.plaf.basic.BasicLookAndFeel;
 
 public class LAFManager implements LAFInterface {
 
-    private BasicLookAndFeel initialLAF = LAFTypes.FLAT_DARK.get();
-    private BasicLookAndFeel currentLAF;
+    private LAFOptions initialLAF = LAFOptions.FLAT_LIGHT;
+    private LAFOptions currentLAF;
+    private String currentType;
 
     @Override
     public void startLAF() {
         setLAF(initialLAF);
         currentLAF = initialLAF;
+        currentType = currentLAF.getType();
+    }
+
+    @Override
+    public BasicLookAndFeel getLAF() {
+        return currentLAF.get();
     }
     
     @Override
-    public BasicLookAndFeel getLAF(){
-        return currentLAF;
+    public String getCurrentType(){
+        return currentLAF.getType();
+    }
+    
+    @Override
+    public void cycleType(){
+        currentType = switch (currentType) {
+            case LAFOptions.LIGHT -> LAFOptions.DARK;
+            case LAFOptions.DARK -> LAFOptions.LIGHT;
+            default -> LAFOptions.DARK;
+        };
     }
 
     @Override
     public void cycleLAF() {
+        
+        LAFOptions optionsArray[ ] = LAFOptions.valuesByType(currentType);
+        LAFOptions nextLAF;
 
-        LAFTypes[] types = LAFTypes.values();
-        int currentLAFTypeIndex = searchCurrentLAFTypeIndex(types);
+        int currentOptionIndex = searchCurrentLAFTypeIndex(optionsArray);
+        int nextOptionIndex;
 
-        int nextLAFTypeIndex;
-        BasicLookAndFeel nextLAF;
         try {
-            nextLAFTypeIndex = currentLAFTypeIndex + 1;
-            nextLAF = types[nextLAFTypeIndex].get();
+            nextOptionIndex = currentOptionIndex + 1;
+            nextLAF = optionsArray[nextOptionIndex];
         } catch (IndexOutOfBoundsException e) {
-            nextLAFTypeIndex = 0;
-            nextLAF = types[nextLAFTypeIndex].get();
+            nextLAF = optionsArray[0];
         }
         setLAF(nextLAF);
         currentLAF = nextLAF;
     }
 
-    private int searchCurrentLAFTypeIndex(LAFTypes[] types) {
+    private int searchCurrentLAFTypeIndex(LAFOptions[] types) {
         int index;
-        for (index = 0; index  < types.length; index++) {
-            if (types[index].get().equals(currentLAF)) return index;
+        for (index = 0; index < types.length; index++) {
+            if (types[index].equals(currentLAF)) return index;
         }
         return -1;
     }

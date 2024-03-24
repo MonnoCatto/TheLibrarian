@@ -2,7 +2,6 @@ package control;
 
 import view.MainView;
 import view.LAFManager;
-import view.LAFInterface;
 import DAO.*;
 
 public class Main {
@@ -23,7 +22,7 @@ public class Main {
         
         cBook.setStockController(cStock);
         
-        LAFInterface lafManager = new LAFManager();
+        LAFManager lafManager = new LAFManager();
         lafManager.startLAF();
         
         /* Create and display the form */
@@ -32,6 +31,7 @@ public class Main {
             public void run() {
                 var frame = new MainView(lafManager);
                 frame.setLocationRelativeTo(null);
+                frame.setExtendedState(MainView.MAXIMIZED_BOTH);
                 frame.setVisible(true);
             }
         });
