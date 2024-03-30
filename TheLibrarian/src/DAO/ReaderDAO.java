@@ -1,5 +1,5 @@
 package DAO;
 
-public class ReaderDAO extends GenericDAO{
+public class ReaderDAO extends AbstractDAO{
     
 }

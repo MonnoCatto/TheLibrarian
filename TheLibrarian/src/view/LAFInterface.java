@@ -4,7 +4,7 @@ import javax.swing.plaf.basic.BasicLookAndFeel;
 
 public interface LAFInterface {
 
-    public void startLAF();
+    public void setupLAF();
     
     public void cycleLAF();
     

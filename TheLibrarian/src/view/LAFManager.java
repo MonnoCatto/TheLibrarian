@@ -9,7 +9,7 @@ public class LAFManager implements LAFInterface {
     private String currentType;
 
     @Override
-    public void startLAF() {
+    public void setupLAF() {
         setLAF(initialLAF);
         currentLAF = initialLAF;
         currentType = currentLAF.getType();

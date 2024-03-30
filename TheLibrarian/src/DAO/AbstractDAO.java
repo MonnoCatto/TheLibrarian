@@ -2,7 +2,7 @@ package DAO;
 
 import java.util.ArrayList;
 
-public abstract class GenericDAO<T extends Object> {
+public abstract class AbstractDAO<T extends Object> {
 
     private final ArrayList<T> database = new ArrayList<>();
 

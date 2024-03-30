@@ -1,6 +1,6 @@
 package control;
 
-import view.MainView;
+import view.LoginScreen;
 import view.LAFManager;
 import DAO.*;
 
@@ -23,15 +23,15 @@ public class Main {
         cBook.setStockController(cStock);
         
         LAFManager lafManager = new LAFManager();
-        lafManager.startLAF();
+        lafManager.setupLAF();
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                var frame = new MainView(lafManager);
+                var frame = new LoginScreen(lafManager);
                 frame.setLocationRelativeTo(null);
-                frame.setExtendedState(MainView.MAXIMIZED_BOTH);
+                //frame.setExtendedState(LoginScreen.MAXIMIZED_BOTH);
                 frame.setVisible(true);
             }
         });
