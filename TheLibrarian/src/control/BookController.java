@@ -1,7 +1,7 @@
 package control;
 
 import exc.*;
-import DAO.BookDAO;
+import dao.BookDAO;
 import model.Author;
 import model.Book;
 import model.Stock;

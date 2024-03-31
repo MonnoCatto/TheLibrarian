@@ -2,7 +2,7 @@ package control;
 
 import model.Book;
 import model.Stock;
-import DAO.StockDAO;
+import dao.StockDAO;
 
 public class StockController {
     

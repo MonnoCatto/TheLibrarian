@@ -1,8 +1,12 @@
 package control;
 
+import dao.LoanDAO;
+import dao.ReaderDAO;
+import dao.BookDAO;
+import dao.AuthorDAO;
+import dao.StockDAO;
 import view.LoginScreen;
 import view.LAFManager;
-import DAO.*;
 
 public class Main {
     

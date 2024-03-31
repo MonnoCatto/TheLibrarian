@@ -1,6 +1,6 @@
 package control;
 
-import DAO.LoanDAO;
+import dao.LoanDAO;
 
 public class LoanController {
 

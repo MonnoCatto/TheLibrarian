@@ -13,6 +13,7 @@ public class MainView extends javax.swing.JFrame {
     public MainView(LAFInterface lafManager) {
         this.lafManager = lafManager;
         initComponents();
+        setIconImage(IconLoader.loadDefault());
         updateMenuText();
     }
     
@@ -24,7 +25,7 @@ public class MainView extends javax.swing.JFrame {
     
     private void updateMenuText(){
         
-        jMenuItemThemeChanger.setText("Current Theme: " + lafManager.getLAF().getName());
+        //jMenuItemThemeChanger.setText("Current Theme: " + lafManager.getLAF().getName());
         
         String mode = lafManager.getCurrentType();
         String togglerMenuText;
@@ -33,7 +34,7 @@ public class MainView extends javax.swing.JFrame {
             case "DARK" -> "Dark Mode";
             default -> "Untracked UI Theme";
         };
-        jMenuItemModeToggler.setText(togglerMenuText);
+        //jMenuItemModeToggler.setText(togglerMenuText);
     }
 
     /**
@@ -56,11 +57,9 @@ public class MainView extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuEdit = new javax.swing.JMenu();
-        jMenuThemes = new javax.swing.JMenu();
-        jMenuItemThemeChanger = new javax.swing.JMenuItem();
-        jMenuItemModeToggler = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("The Librarian - Demonstration Library Manager");
         setMinimumSize(new java.awt.Dimension(800, 600));
 
         topPanel.setLayout(new javax.swing.BoxLayout(topPanel, javax.swing.BoxLayout.LINE_AXIS));
@@ -133,27 +132,6 @@ public class MainView extends javax.swing.JFrame {
         jMenuBar2.add(jMenu2);
 
         jMenuEdit.setText("Edit");
-
-        jMenuThemes.setText("Themes");
-
-        jMenuItemThemeChanger.setText("Current Theme: FlatLaf Example");
-        jMenuItemThemeChanger.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemThemeChangerActionPerformed(evt);
-            }
-        });
-        jMenuThemes.add(jMenuItemThemeChanger);
-
-        jMenuItemModeToggler.setText("Example Mode");
-        jMenuItemModeToggler.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toggleMode(evt);
-            }
-        });
-        jMenuThemes.add(jMenuItemModeToggler);
-
-        jMenuEdit.add(jMenuThemes);
-
         jMenuBar2.add(jMenuEdit);
 
         setJMenuBar(jMenuBar2);
@@ -169,24 +147,6 @@ public class MainView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonNewLoan1ActionPerformed
 
-    private void jMenuItemThemeChangerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemThemeChangerActionPerformed
-        lafManager.cycleLAF();
-        updateMenuText();
-        updateUI();
-        jMenuEdit.doClick();
-        jMenuThemes.doClick();
-    }//GEN-LAST:event_jMenuItemThemeChangerActionPerformed
-
-    private void toggleMode(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleMode
-        // TODO add your handling code here:
-        lafManager.cycleType();
-        lafManager.cycleLAF();
-        updateUI();
-        updateMenuText();
-        jMenuEdit.doClick();
-        jMenuThemes.doClick();
-    }//GEN-LAST:event_toggleMode
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contentPanel;
     private javax.swing.JButton jButtonNewBook;
@@ -196,9 +156,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenu jMenuEdit;
-    private javax.swing.JMenuItem jMenuItemModeToggler;
-    private javax.swing.JMenuItem jMenuItemThemeChanger;
-    private javax.swing.JMenu jMenuThemes;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar4;
     private javax.swing.JPanel topPanel;

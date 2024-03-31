@@ -13,37 +13,13 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
-          <SubComponents>
-            <Menu class="javax.swing.JMenu" name="jMenuThemes">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Themes"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItemThemeChanger">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Current Theme: FlatLaf Example"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemThemeChangerActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItemModeToggler">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Example Mode"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toggleMode"/>
-                  </Events>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
-          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="The Librarian - Demonstration Library Manager"/>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[800, 600]"/>
     </Property>

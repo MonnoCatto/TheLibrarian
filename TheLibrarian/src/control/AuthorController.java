@@ -1,7 +1,7 @@
 package control;
 
 import model.Author;
-import DAO.AuthorDAO;
+import dao.AuthorDAO;
 
 public class AuthorController {
 

@@ -1,6 +1,6 @@
 package control;
 
-import DAO.ReaderDAO;
+import dao.ReaderDAO;
 
 public class ReaderController {
     

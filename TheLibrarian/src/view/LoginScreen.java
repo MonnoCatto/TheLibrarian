@@ -2,7 +2,7 @@ package view;
 
 public class LoginScreen extends javax.swing.JFrame {
 
-    private LAFInterface lafManager;
+    private final LAFInterface lafManager;
     
     /**
      * Creates new form LoginScreen
@@ -10,6 +10,7 @@ public class LoginScreen extends javax.swing.JFrame {
     public LoginScreen(LAFInterface lafManager) {
         this.lafManager = lafManager;
         initComponents();
+        setIconImage(IconLoader.loadDefault());
     }
     
     private void attemptLogin(){
@@ -38,6 +39,7 @@ public class LoginScreen extends javax.swing.JFrame {
         passwordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Authenticate");
         setMinimumSize(new java.awt.Dimension(600, 400));
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
